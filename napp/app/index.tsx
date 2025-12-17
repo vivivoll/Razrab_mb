@@ -1,17 +1,17 @@
 import { FlatList, View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import Entypo from '@expo/vector-icons/Entypo';
 import { Link } from "expo-router";
-import { useNotes } from "./use_hooks"; //Испорт хуков
+import { useNotes } from "./use_hooks"; //испорт хуков
 
 export default function Index() {
 
-  //Хук - загрузка списка заметок, функция создания новой заметки
+  //хук-функция создания новой заметки
   const { notes, createNote } = useNotes();
 
   return (
     <View style={styles.container}>
       <FlatList 
-        data={notes} //Список заметок, полученный из хука
+        data={notes} //список заметок которые получвкт из хука
         keyExtractor={(item) => item.id}
         renderItem={(item) => (
           <Link href={`/note/${item.item.id}`} style={styles.noteItem}>
@@ -21,7 +21,7 @@ export default function Index() {
           </Link>
         )}
       />
-      {/*Функция для хука, Создающая заметку*/}
+      {/*функция, которая создает заметку*/}
       <TouchableOpacity onPress={createNote} style={styles.addBtn}>
         <Entypo name="add-to-list" size={24} color="black" style={styles.addBtnText}/>
       </TouchableOpacity>
@@ -60,4 +60,5 @@ const styles = StyleSheet.create({
     lineHeight: 32,
   },
 });
+
 
